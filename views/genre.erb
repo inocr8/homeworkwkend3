@@ -3,14 +3,20 @@
 <ul>
 <% @bookmarks.each do |bookmark| %>
 <li>
-<a href= '/bookmarks/<%= bookmark.genre %>'>
-<p>| <%= bookmark.genre %></p></a>
+<a href= '<%= bookmark.genre %>'>
+<p><%= bookmark.genre %></p></a>
 </li>
 </ul>
 <% end %>
+<ul>
+<li>
+<a href= '/bookmarks'>
+<p> All </p></a>
+</li>
+</ul>
 
 <ul>
-  <% @bookmarks.each do |bookmark| %>
+  <% @bookmarks.select do |bookmark| if @genre == bookmark.genre %>
     <li>
       <a href= '<%=bookmark.url%>'><p>URL: <%= bookmark.url %></p></a>
       <p>Title: <%= bookmark.title %></p></a>
@@ -22,5 +28,6 @@
         <button> Delete bookmark </button>
       </form>
     </li>
+    <% end %>
   <% end %>
 </ul>
